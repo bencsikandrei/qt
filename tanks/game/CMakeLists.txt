@@ -10,6 +10,7 @@ file(GLOB P_SRC
     src/*.cpp
     )
 
+
 add_library(${PROJECT_NAME}
     ${P_INC}
     ${P_SRC}
@@ -18,4 +19,8 @@ add_library(${PROJECT_NAME}
 target_include_directories(${PROJECT_NAME}
     PUBLIC inc/
     PUBLIC src/
+    )
+
+target_link_libraries(${PROJECT_NAME}
+    common
     )
