@@ -34,3 +34,6 @@ add_subdirectory(gameController)
 
 # game controller implementation subdirectory
 add_subdirectory(gameControllerImpl)
+
+# include tests
+add_subdirectory(tests)

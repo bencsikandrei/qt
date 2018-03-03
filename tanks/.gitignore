@@ -1,0 +1,6 @@
+# ignore binaries
+*.o
+*.out
+
+CMakeLists.txt.user*
+*.autosave

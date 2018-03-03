@@ -2,11 +2,12 @@
 #define TANK_H
 
 #include "eheading.h"
-#include "position.h"
+#include <position.h>
 
 class Tank
 {
 public:
+    using Position = common::Position_i;
     Tank(eHeading heading, Position position);
 
 private:

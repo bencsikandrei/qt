@@ -1,24 +1,50 @@
-#ifndef POSITION_H
-#define POSITION_H
+#pragma once
+#include "utils.h"
 
-class Position
-{
+namespace common {
+// The values for X and Y were doubles, but I don't see how that can work (pixel values are
+// unsigned ints. But for the purpose of making it work with doubles as well, let's make it
+// a template
+template<typename ValueType = size_t>
+class Position {
 public:
-    Position(const double& x, const double& y);
+    // TODO consider using StrongTypes ?
+    // see: https://github.com/joboccara/NamedType
+    using XPos = ValueType;
+    using YPos = ValueType;
+    // need a default ctor
+    explicit Position(XPos x = {}, YPos y = {})
+        : m_x { x }, m_y { y }
+    {}
+    Position(Position const& rhs) = default;
+    Position(Position && rhs) = default;
+    Position& operator=(Position const& rhs) = default;
+    Position& operator=(Position && rhs) = default;
 
-    // getters
-    double getX() const;
+    ~Position() {}
 
-    double getY() const;
+    XPos getX() const { return m_x; }
+    YPos getY() const { return m_y; }
 
-    // setters
-    void setX(const double& x);
-
-    void setY(const double& y);
+    void setX(XPos newX) {m_x = newX; }
+    void setY(YPos newY) { m_y = newY; }
 
 private:
-    double m_x;
-    double m_y;
+    XPos m_x;
+    YPos m_y;
 };
 
-#endif  // POSITION_H
+using Position_i = Position<int>;
+using Position_d = Position<double>;
+
+template <typename ValueType>
+inline bool operator==(Position<ValueType> const& p1, Position<ValueType> const& p2) {
+    return p1.getX () == p2.getX () && p1.getY() == p2.getY ();
+}
+
+template <typename ValueType>
+inline bool operator!=(Position<ValueType> const& p1, Position<ValueType> const& p2) {
+    return !(p1 == p2);
+}
+
+} // common
