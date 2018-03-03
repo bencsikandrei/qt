@@ -26,11 +26,13 @@ def executeOneTestSuite(exe):
 def getTestDirs():
     return [ dir for dir in os.listdir(".") if dir.startswith("test") ]
 
+def getExecutables(dir):
+    return [ exec for exec in os.listdir(dir) if isExe(dir + "/" + exec) ]
+
 def runTests():
     for dir in getTestDirs():
-        for file in os.listdir(dir):
-            if isExe(dir + "/" + file):
-                executeOneTestSuite(dir+"/"+file)
+        for file in getExecutables(dir):
+            executeOneTestSuite(dir+"/"+file)
 
 def runAllTests():
     ## find the build dir
