@@ -47,4 +47,10 @@ inline bool operator!=(Position<ValueType> const& p1, Position<ValueType> const&
     return !(p1 == p2);
 }
 
+template <typename ValueType>
+std::ostream& operator<<(std::ostream& out, Position<ValueType> const& pos) {
+    out << "(" << pos.getX () << ", " << pos.getY () << ")";
+    return out;
+}
+
 } // common

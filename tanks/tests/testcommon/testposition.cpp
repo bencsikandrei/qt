@@ -43,6 +43,16 @@ TEST(APosition, CanBeDeepCopied) {
     ASSERT_NE(original, copy);
 }
 
+TEST(APosition, PrintsXAndYSeparatedByCommas) {
+    Position<int> pos { 1, 2 };
+
+    std::ostringstream oss {};
+    oss << pos;
+    std::string output { oss.str() };
+    std::string expected { "(1, 2)" };
+    ASSERT_EQ(expected, output);
+}
+
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest (&argc, argv);
     return RUN_ALL_TESTS ();
