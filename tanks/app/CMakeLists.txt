@@ -22,6 +22,7 @@ add_executable(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME}
     ${QT5_X_LIBS}
+    pathsRegistry
     )
 
 install(TARGETS ${PROJECT_NAME}
