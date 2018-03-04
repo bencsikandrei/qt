@@ -57,6 +57,20 @@ TEST(ATank, ReturnsItsLastPositionAfterCallingMove) {
     EXPECT_EQ(positionBeforeMove, initialPosition);
 }
 
+TEST(ATank, PrintsOutAsTankTypeAndItsNameAndHealth) {
+    Vehicle::Position position { 10, 10 };
+    common::Name name { "CuddlyTank" };
+    common::Health health { 200 };
+    Tank cuddlyTank { name, position, health };
+    std::ostringstream oss {};
+    std::string expectedPrint { "Tank: CuddlyTank, With: 200 lifepoints, At: (10, 10)"};
+
+    oss << cuddlyTank;
+    std::string result { oss.str() };
+
+    EXPECT_EQ(result, expectedPrint);
+}
+
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest (&argc, argv);
     return RUN_ALL_TESTS ();

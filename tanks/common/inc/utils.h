@@ -7,15 +7,14 @@
 #include <iostream>
 #include <sstream>
 
-// project specific
-#include <position.h>
-
 namespace common {
 
+// types
 using Health = uint64_t;
 using Damage = Health; // damage is the opposite of health
+using Name = std::string;
 
+// constants
 constexpr Health DEFAULT_VEHICLE_HEALTH = 100;
-
 
 } // common

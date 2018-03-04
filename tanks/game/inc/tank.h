@@ -1,5 +1,4 @@
-#ifndef TANK_H
-#define TANK_H
+#pragma once
 
 #include "eheading.h"
 #include "vehicle.h"
@@ -16,7 +15,10 @@ public:
     Tank(Vehicle::Position initialPosition)
         : Vehicle(initialPosition)
     {}
-
+    Tank(common::Name name, Vehicle::Position initialPosition, common::Health health)
+        : Vehicle(name, initialPosition, health)
+    {
+    }
     Tank(Tank const& rhs) = delete;
     Tank(Tank && rhs) = delete;
     Tank& operator=(Tank const& rhs) = delete;
@@ -25,8 +27,8 @@ public:
     virtual  ~Tank() {}
 
     void fire() const override;
+    std::string toString() const override;
 
 private:
 };
 
-#endif
