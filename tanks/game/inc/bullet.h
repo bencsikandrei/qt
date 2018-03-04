@@ -6,7 +6,7 @@
 class Bullet
 {
 public:
-    explicit Bullet(common::Position<int> const& initialPosition = common::Position<int>(),
+    explicit Bullet(common::Position const& initialPosition = common::Position(),
                     eHeading const initialHeading = eHeading::North, common::Speed const = common::Speed{},
                     common::Damage damage = common::Damage{});
 
@@ -18,12 +18,12 @@ public:
 
     Bullet& operator=(Bullet&& rhs) = default;
 
-    common::Position<int> getPosition() const;
+    common::Position getPosition() const;
 
     void move();
 
 private:
-    common::Position<int> m_position;
+    common::Position m_position;
     common::Speed         m_speed;
     common::Damage        m_damage;
     eHeading              m_heading;

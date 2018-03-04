@@ -1,6 +1,6 @@
 #include "bullet.h"
 
-Bullet::Bullet(common::Position<int> const& initialPosition, eHeading const initialHeading, common::Speed speed,
+Bullet::Bullet(common::Position const& initialPosition, eHeading const initialHeading, common::Speed speed,
                common::Damage damage)
     : m_position(initialPosition)
     , m_speed(speed)
@@ -9,7 +9,7 @@ Bullet::Bullet(common::Position<int> const& initialPosition, eHeading const init
 {
 }
 
-common::Position<int> Bullet::getPosition() const
+common::Position Bullet::getPosition() const
 {
     return m_position;
 }

@@ -6,13 +6,13 @@ class ABullet : public ::testing::Test
 {
 public:
     ABullet()
-        : initialPosition(common::Position<int>(10, 10))
+        : initialPosition(common::Position(10, 10))
         , initialHeading(eHeading::North)
     {
     }
 
     Bullet                b;
-    common::Position<int> initialPosition;
+    common::Position initialPosition;
     eHeading              initialHeading;
 };
 
@@ -23,7 +23,7 @@ TEST_F(ABullet, IsDefaultContructable)
 
 TEST_F(ABullet, HasDefaultPosition)
 {
-    common::Position<int> initialPosition;
+    common::Position initialPosition;
     EXPECT_EQ(b.getPosition(), initialPosition);
 }
 
@@ -45,10 +45,10 @@ TEST_F(ABullet, CanChangePositionWithMoveMethod)
     bSouth.move();
     bWest.move();
 
-    EXPECT_EQ(bNorth.getPosition(), common::Position<int>(initialPosition).moveOnY(-1));
-    EXPECT_EQ(bEast.getPosition(), common::Position<int>(initialPosition).moveOnX(1));
-    EXPECT_EQ(bSouth.getPosition(), common::Position<int>(initialPosition).moveOnY(1));
-    EXPECT_EQ(bWest.getPosition(), common::Position<int>(initialPosition).moveOnX(-1));
+    EXPECT_EQ(bNorth.getPosition(), common::Position(initialPosition).moveOnY(-1));
+    EXPECT_EQ(bEast.getPosition(), common::Position(initialPosition).moveOnX(1));
+    EXPECT_EQ(bSouth.getPosition(), common::Position(initialPosition).moveOnY(1));
+    EXPECT_EQ(bWest.getPosition(), common::Position(initialPosition).moveOnX(-1));
 }
 
 int main(int argc, char** argv)
