@@ -3,6 +3,24 @@ find_package(Threads REQUIRED)
 # Enable ExternalProject CMake module
 include(ExternalProject)
 
+# create and link unit test
+function(add_unit_test test_case libs_list)
+
+    ADD_EXECUTABLE(${test_case}
+        ${test_case}.cpp
+        )
+
+    TARGET_LINK_LIBRARIES(${test_case}
+        ${libs_list}
+        libgtest
+        libgmock
+        )
+
+    add_test(NAME ${test_case}
+        COMMAND ${test_case})
+
+endfunction()
+
 # Download and install GoogleTest
 ExternalProject_Add(
     gtest
@@ -10,7 +28,7 @@ ExternalProject_Add(
     PREFIX ${CMAKE_CURRENT_BINARY_DIR}/gtest
     # Disable install step
     INSTALL_COMMAND ""
-)
+    )
 
 # Get GTest source and binary directories from CMake project
 ExternalProject_Get_Property(gtest source_dir binary_dir)
@@ -23,7 +41,7 @@ add_dependencies(libgtest gtest)
 set_target_properties(libgtest PROPERTIES
     "IMPORTED_LOCATION" "${binary_dir}/googlemock/gtest/libgtest.a"
     "IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}"
-)
+    )
 
 # Create a libgmock target to be used as a dependency by test programs
 add_library(libgmock IMPORTED STATIC GLOBAL)
@@ -33,11 +51,11 @@ add_dependencies(libgmock gtest)
 set_target_properties(libgmock PROPERTIES
     "IMPORTED_LOCATION" "${binary_dir}/googlemock/libgmock.a"
     "IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}"
-)
+    )
 
 # I couldn't make it work with INTERFACE_INCLUDE_DIRECTORIES
 include_directories("${source_dir}/googletest/include"
-                    "${source_dir}/googlemock/include")
+    "${source_dir}/googlemock/include")
 
 add_subdirectory(testcommon)
 add_subdirectory(testgame)

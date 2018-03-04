@@ -2,12 +2,13 @@
 #include <QDir>
 #include <QQuickView>
 #include <iostream>
+#include "pathsregistry.h"
 
 int main(int argc, char** argv)
 {
     QGuiApplication app(argc, argv);
 
-    QString qmlPath = QCoreApplication::applicationDirPath() + "/../qml/qml/main.qml";
+    QString qmlPath = QCoreApplication::applicationDirPath() + PathsRegistry::mainQmlPath();
 
     QDir::setCurrent(QCoreApplication::applicationDirPath());
 

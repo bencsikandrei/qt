@@ -1,13 +1,14 @@
 file(GLOB SRCS *.cpp)
 
-ADD_EXECUTABLE(testtank ${SRCS})
-
-TARGET_LINK_LIBRARIES(testtank
+set(libs
     game
     common
-    libgtest
-    libgmock
-)
+    )
+add_unit_test(testtank ${libs})
 
-add_test(NAME testtank
-         COMMAND testtank)
+set(libs
+    game
+    common
+    )
+add_unit_test(testbullet ${libs})
+
