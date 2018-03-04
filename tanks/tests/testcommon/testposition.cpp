@@ -32,6 +32,19 @@ TEST(APosition, CanSetBothItsValues) {
     ASSERT_EQ(pos.getY (), YPos {15});
 }
 
+TEST(APosition, CanBeResetToAnother) {
+    Position<int> original{10, 20};
+
+    original.reset(1, 2);
+
+    EXPECT_EQ(original, Position<int>(1, 2));
+
+    Position<int> after { 3, 4 };
+    original.reset(after);
+
+    EXPECT_EQ(original, after);
+}
+
 TEST(APosition, CanBeDeepCopied) {
     Position<int> original {10, 15};
     Position<int> copy { original };
