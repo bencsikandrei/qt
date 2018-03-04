@@ -6,7 +6,7 @@ namespace common {
 // unsigned ints. But for the purpose of making it work with doubles as well, let's make it
 // a template
 template<typename ValueType = size_t>
-class Position {
+class Position final {
 public:
     // TODO consider using StrongTypes ?
     // see: https://github.com/joboccara/NamedType
@@ -29,13 +29,12 @@ public:
     void setX(XPos newX) {m_x = newX; }
     void setY(YPos newY) { m_y = newY; }
 
+    void reset(XPos newX, YPos newY) { m_x = newX; m_y = newY;}
+    void reset(Position const& newPos) { reset(newPos.m_x, newPos.m_y);}
 private:
     XPos m_x;
     YPos m_y;
 };
-
-using Position_i = Position<int>;
-using Position_d = Position<double>;
 
 template <typename ValueType>
 inline bool operator==(Position<ValueType> const& p1, Position<ValueType> const& p2) {
