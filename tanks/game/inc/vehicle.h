@@ -9,7 +9,7 @@ using Name = common::Name;
 class Vehicle
 {
 public:
-    using Position = common::Position<int>;
+    using Position = common::Position;
     using XPos = Position::XPos;
     using YPos = Position::YPos;
 
