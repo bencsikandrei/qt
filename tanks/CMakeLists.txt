@@ -30,10 +30,10 @@ add_subdirectory(common)
 add_subdirectory(pathsRegistry)
 
 # game controller subdirectory
-add_subdirectory(gameController)
+#add_subdirectory(gameController)
 
 # game controller implementation subdirectory
-add_subdirectory(gameControllerImpl)
+#add_subdirectory(gameControllerImpl)
 
 # include tests
 add_subdirectory(tests)
