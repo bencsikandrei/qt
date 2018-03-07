@@ -6,6 +6,8 @@
 #include <cstdint>
 #include <iostream>
 #include <sstream>
+#include <utility>
+#include <type_traits>
 
 namespace common
 {

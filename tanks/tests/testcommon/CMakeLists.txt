@@ -1,12 +1,11 @@
 file(GLOB SRCS *.cpp)
 
-ADD_EXECUTABLE(testposition ${SRCS})
-
-TARGET_LINK_LIBRARIES(testposition
-    common
-    libgtest
-    libgmock
+set(libs
+        common
 )
+add_unit_test(testposition ${libs})
 
-add_test(NAME testposition
-         COMMAND testposition)
+set(libs
+    common
+)
+add_unit_test(testvector2d ${libs})
