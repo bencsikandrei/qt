@@ -3,6 +3,7 @@
 #include <utils.h>
 #include <cmath>
 
+#define operators /* */
 namespace common {
 template <
         typename Coordinate,
@@ -11,6 +12,10 @@ template <
 class Vector2D_ final{
 public:
     using value_type = Coordinate;
+
+public:
+    static Vector2D_ const One;
+    static Vector2D_ const Zero;
 public:
     Vector2D_(value_type x = value_type{}, value_type y = value_type{})
         : coordinates { std::make_pair(x, y) }
@@ -36,18 +41,44 @@ public:
                     );
     }
 
+    bool equals(Vector2D_ const& other) const {
+        return this->coordinates.first == other.coordinates.first &&
+                this->coordinates.second == other.coordinates.second;
+    }
+
     Vector2D_ normalized() const {
         static_assert(std::is_floating_point<Coordinate>::value, "Normalized method can't work propely for integers");
         value_type mag { magnitude () };
-        return Vector2D_(coordinates.first / mag, coordinates.second / mag );
+        return Vector2D_(getX () / mag, getY() / mag );
+    }
+
+public operators:
+    Vector2D_& operator+=(Vector2D_ const& rhs) {
+        this->coordinates.first += rhs.getX ();
+        this->coordinates.second += rhs.getY ();
+        return *this;
     }
 private:
     std::pair<value_type, value_type> coordinates;
 };
 
-namespace consts {
+using Vector2D = Vector2D_<float>;
+
+template <typename T, typename I> Vector2D_<T, I> const Vector2D_<T, I>::One(1, 1);
+template <typename T, typename I> Vector2D_<T, I> const Vector2D_<T, I>::Zero(0, 0);
+
+bool operator==(Vector2D v1, Vector2D v2) {
+    return v1.equals (v2);
 }
 
-using Vector2D = Vector2D_<float>;
+Vector2D operator+(Vector2D v1, Vector2D v2) {
+    Vector2D sum { v1.getX () + v2.getX (),
+                v1.getY () + v2.getY () };
+}
+
+Vector2D operator-(Vector2D v1, Vector2D v2) {
+    Vector2D dif { v1.getX () - v2.getX (),
+                 v1.getY () - v2.getY ()};
+}
 
 } // common
