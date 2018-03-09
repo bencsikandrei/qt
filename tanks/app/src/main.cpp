@@ -8,7 +8,7 @@ int main(int argc, char** argv)
 {
     QGuiApplication app(argc, argv);
 
-    QString qmlPath = QCoreApplication::applicationDirPath() + PathsRegistry::mainQmlPath();
+    QString qmlPath = QCoreApplication::applicationDirPath() + PathsRegistry::qmlPath();
 
     QDir::setCurrent(QCoreApplication::applicationDirPath());
 
